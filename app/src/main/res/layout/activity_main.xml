@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+            android:id="@+id/offers_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:textColor="#000000"
+            android:text="@string/choose_a_language"
+            android:textSize="25sp"
+            android:textStyle="bold"/>
+
+    <RelativeLayout
+            android:layout_below="@+id/offers_title"
+            android:id="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/round_textedit_search">
+
+        <ImageView
+                android:id="@+id/serch"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_centerVertical="true"
+                android:padding="@dimen/_5sdp"
+                android:src="@drawable/ic_search" />
+
+
+        <View
+                android:id="@+id/vies"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_marginBottom="@dimen/_5sdp"
+                android:layout_toRightOf="@+id/serch"
+                android:background="#c7c7c7" />
+
+        <EditText
+                android:id="@+id/search_view"
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_height="match_parent"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/_14sdp"
+                android:singleLine="true"
+                android:gravity="center_vertical"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_toRightOf="@+id/vies"
+                android:background="@null"
+                android:hint="search" />
+
+
+    </RelativeLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+            android:id="@+id/lng_recy"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:scrollbars="none"
+            android:layout_marginBottom="60dp"
+            android:layout_below="@+id/rl"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="16dp"
+    />
+
+
+    <Button
+            android:layout_alignParentBottom="true"
+            android:text="Continue"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:background="#2525be"
+            android:onClick="btn_continue"
+            android:textColor="#FFF"
+            android:textAllCaps="false"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/button"
+    />
+
+
+    <TextView
+            android:id="@+id/tv_nodata"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:gravity="center_horizontal"
+            android:text="No record found"
+            android:visibility="gone" />
+
+
+</RelativeLayout>

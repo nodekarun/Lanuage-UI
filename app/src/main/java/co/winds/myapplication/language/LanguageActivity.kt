@@ -1,6 +1,7 @@
 package co.winds.myapplication
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
@@ -24,17 +25,17 @@ class LanguageActivity : AppCompatActivity(), LangAdapter.SingleClickListener {
 
     private fun getLanData(): ArrayList<LanguageModel> {
         val listData = ArrayList<LanguageModel>()
-        listData.add(LanguageModel("English", "English", "en", "en", false, 0))
-        listData.add(LanguageModel("Hindi", "हिंदी", "hi", "en", false, 1))
-        listData.add(LanguageModel("Telugu", "తెలుగు", "te", "en", false, 2))
-        listData.add(LanguageModel("Tamil", "தமிழ்", "ta", "en", false, 3))
-        listData.add(LanguageModel("Malayalam", "മലയാളം", "ml", "en", false, 4))
-        listData.add(LanguageModel("Gujarati", "ગુજરાતી", "gu", "en", false, 5))
-        listData.add(LanguageModel("Assamese ", "অসমীয়া", "as", "en", false, 6))
-        listData.add(LanguageModel("Bengali", "বাঙালি", "bn", "en", false, 7))
-        listData.add(LanguageModel("Kannada", "ಕನ್ನಡ", "kn", "en", false, 8))
-        listData.add(LanguageModel("Marathi", "मराठी", "mr", "en", false, 9))
-        listData.add(LanguageModel("Oriya", "ଓଡ଼ିଆ", "or", "en", false, 10))
+        listData.add(LanguageModel("English", "English", "en",  0))
+        listData.add(LanguageModel("Hindi", "हिंदी", "hi",  1))
+        listData.add(LanguageModel("Telugu", "తెలుగు", "te",  2))
+        listData.add(LanguageModel("Tamil", "தமிழ்", "ta",  3))
+        listData.add(LanguageModel("Malayalam", "മലയാളം", "ml",  4))
+        listData.add(LanguageModel("Gujarati", "ગુજરાતી", "gu",  5))
+        listData.add(LanguageModel("Assamese ", "অসমীয়া", "as",  6))
+        listData.add(LanguageModel("Bengali", "বাঙালি", "bn",  7))
+        listData.add(LanguageModel("Kannada", "ಕನ್ನಡ", "kn",  8))
+        listData.add(LanguageModel("Marathi", "मराठी", "mr",  9))
+        listData.add(LanguageModel("Oriya", "ଓଡ଼ିଆ", "or",  10))
 
         return listData
     }
@@ -89,7 +90,9 @@ class LanguageActivity : AppCompatActivity(), LangAdapter.SingleClickListener {
 
 
     fun btn_continue(v: View) {
-        Toast.makeText(this, langCode, Toast.LENGTH_SHORT).show()
+        LocaleHelper.setLocale(this, langCode);
+        recreate()
+        startActivity(Intent(this@LanguageActivity,HomeActivity::class.java))
     }
 
 

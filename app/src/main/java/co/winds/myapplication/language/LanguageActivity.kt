@@ -1,7 +1,8 @@
-package co.winds.myapplication
+package co.winds.myapplication.language
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.DividerItemDecoration
@@ -10,8 +11,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.view.View
 import android.view.inputmethod.InputMethodManager
-import android.widget.Toast
+import co.winds.myapplication.R
+import co.winds.myapplication.model.LanguageModel
+import co.winds.myapplication.ui.HomeActivity
+import co.winds.myapplication.utils.LocaleHelper
+import co.winds.myapplication.utils.SharedPrefUtils
+import co.winds.myapplication.utils.startNewActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 
 class LanguageActivity : AppCompatActivity(), LangAdapter.SingleClickListener {
@@ -25,21 +32,21 @@ class LanguageActivity : AppCompatActivity(), LangAdapter.SingleClickListener {
 
     private fun getLanData(): ArrayList<LanguageModel> {
         val listData = ArrayList<LanguageModel>()
-        listData.add(LanguageModel("English", "English", "en",  0))
-        listData.add(LanguageModel("Hindi", "हिंदी", "hi",  1))
-        listData.add(LanguageModel("Telugu", "తెలుగు", "te",  2))
-        listData.add(LanguageModel("Tamil", "தமிழ்", "ta",  3))
-        listData.add(LanguageModel("Malayalam", "മലയാളം", "ml",  4))
-        listData.add(LanguageModel("Gujarati", "ગુજરાતી", "gu",  5))
-        listData.add(LanguageModel("Assamese ", "অসমীয়া", "as",  6))
-        listData.add(LanguageModel("Bengali", "বাঙালি", "bn",  7))
-        listData.add(LanguageModel("Kannada", "ಕನ್ನಡ", "kn",  8))
-        listData.add(LanguageModel("Marathi", "मराठी", "mr",  9))
-        listData.add(LanguageModel("Oriya", "ଓଡ଼ିଆ", "or",  10))
+        listData.add(LanguageModel("English", "English", "en", 0))
+        listData.add(LanguageModel("Hindi", "हिंदी", "hi", 1))
+        listData.add(LanguageModel("Telugu", "తెలుగు", "te", 2))
+        listData.add(LanguageModel("Tamil", "தமிழ்", "ta", 3))
+        listData.add(LanguageModel("Malayalam", "മലയാളം", "ml", 4))
+        listData.add(LanguageModel("Gujarati", "ગુજરાતી", "gu", 5))
+        listData.add(LanguageModel("Assamese ", "অসমীয়া", "as", 6))
+        listData.add(LanguageModel("Bengali", "বাঙালি", "bn", 7))
+        listData.add(LanguageModel("Kannada", "ಕನ್ನಡ", "kn", 8))
+        listData.add(LanguageModel("Marathi", "मराठी", "mr", 9))
+        listData.add(LanguageModel("Oriya", "ଓଡ଼ିଆ", "or", 10))
 
         return listData
     }
-    val str="hi"
+    val str="hil"
 
     private lateinit var mLangAdapter: LangAdapter
     private var langCode = ""
@@ -90,11 +97,24 @@ class LanguageActivity : AppCompatActivity(), LangAdapter.SingleClickListener {
 
 
     fun btn_continue(v: View) {
-        LocaleHelper.setLocale(this, langCode);
-        recreate()
-        startActivity(Intent(this@LanguageActivity,HomeActivity::class.java))
+        LocaleHelper.setLocale(this, langCode)
+        if(langCode=="hi"){
+            setLanguage(langCode)
+            startNewActivity(HomeActivity::class.java)
+        }else if(langCode=="en"){
+            setLanguage(langCode)
+            startNewActivity(HomeActivity::class.java)
+        }
+        //recreate()
+
     }
 
+    private fun setLanguage(str:String){
+        val config = Configuration()
+        config.locale = Locale(str)
+        SharedPrefUtils.instance.checkLanguage =str
+        createConfigurationContext(config)
+    }
 
     /*Search For Listing  Start*/
     private fun setupSearchView() {

@@ -1,4 +1,16 @@
 <resources>
     <string name="app_name">Lanuage Change UI</string>
     <string name="choose_a_language">Choose a\nlanguage!</string>
+    <string name="hello">Use of the Paytm Platform/Paytm Services
+        Please read the following terms and conditions carefully before registering on, accessing, browsing, downloading
+        or using the Paytm website located at paytm.com, and all associated sites linked to paytm.com, or the Paytm
+        mobile application or any similar platform (hereinafter collectively, the Paytm Platform run by One97
+        Communications Limited, having its registered office at First Floor Devika Tower, Nehru Place New Delhi – 110019
+        and headquartered at B-121, Sector-5, Noida – 201301 (hereinafter collectively, One97 or Paytm ) on any device
+        and/or before availing any services offered by Paytm on the Paytm Platform which may include services such as
+        recharge or bill payment, digital products, semi-closed wallet service and marketplace service or any other
+        service that may be offered by Paytm on the Paytm Platform (hereinafter individually, and collectively, the
+        Paytm Services). For the avoidance of doubt, it is clarified that these terms and conditions shall apply to all
+        Paytm Services, whether offered by One97 or its affiliates.
+    </string>
 </resources>

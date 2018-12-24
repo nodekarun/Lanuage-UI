@@ -1,7 +1,7 @@
-package com.winds.karyakarta.utils
+package co.winds.myapplication.utils
 
 import android.content.Context
-import com.winds.karyakarta.KaryaKartaApplication
+import co.winds.myapplication.MyApplication
 
 
 class SharedPrefUtils private constructor() {
@@ -10,7 +10,7 @@ class SharedPrefUtils private constructor() {
         val instance = SharedPrefUtils()
 
 
-        private val preference_file_key = "com.demo.winds_preference"
+        private val preference_file_key = "com.demo.preference_lang"
 
         private val LANGUAGE = "language"
         private val IS_LOGGED_IN = "is_logged_in"
@@ -28,7 +28,7 @@ class SharedPrefUtils private constructor() {
     }
 
 
-    private val sharedPref = KaryaKartaApplication.appContext!!.getSharedPreferences(preference_file_key, Context.MODE_PRIVATE)
+    private val sharedPref = MyApplication.appContext!!.getSharedPreferences(preference_file_key, Context.MODE_PRIVATE)
     private val editor = sharedPref.edit()
 
 

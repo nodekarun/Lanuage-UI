@@ -1,68 +1,38 @@
-package co.winds.myapplication
+package co.winds.myapplication.utils
 
-import android.annotation.TargetApi
+import android.annotation.SuppressLint
 import android.content.Context
-import android.content.SharedPreferences
-import android.content.res.Configuration
-import android.content.res.Resources
 import android.os.Build
-import android.preference.PreferenceManager
-
-import java.util.Locale
+import java.util.*
 
 
 object LocaleHelper {
 
-    private val SELECTED_LANGUAGE = "Locale.Helper.Selected.Language"
-
     fun onAttach(context: Context): Context {
-        val lang = getPersistedData(context, Locale.getDefault().language)
-        return setLocale(context, lang)
+        val lang = SharedPrefUtils.instance.checkLanguage
+        return setLocale(context, lang!!)
     }
 
-    fun onAttach(context: Context, defaultLanguage: String): Context {
-        val lang = getPersistedData(context, defaultLanguage)
-        return setLocale(context, lang)
-    }
-
-    fun Context.getLanguage(): String? {
-        return getPersistedData(this, Locale.getDefault().language)
-    }
-
-    fun setLocale(context: Context, language: String?): Context {
-        persist(context, language)
-
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+    @SuppressLint("ObsoleteSdkInt")
+    fun setLocale(context: Context, language: String): Context {
+        SharedPrefUtils.instance.checkLanguage = language
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             updateResources(context, language)
         } else updateResourcesLegacy(context, language)
-
     }
 
-    private fun getPersistedData(context: Context, defaultLanguage: String): String? {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        return preferences.getString(SELECTED_LANGUAGE, defaultLanguage)
-    }
-
-    private fun persist(context: Context, language: String?) {
-        val preferences = PreferenceManager.getDefaultSharedPreferences(context)
-        val editor = preferences.edit()
-
-        editor.putString(SELECTED_LANGUAGE, language)
-        editor.apply()
-    }
-
-    @TargetApi(Build.VERSION_CODES.N)
-    private fun updateResources(context: Context, language: String?): Context {
+    private fun updateResources(context: Context, language: String): Context {
         val locale = Locale(language)
         Locale.setDefault(locale)
 
         val configuration = context.resources.configuration
         configuration.setLocale(locale)
+        configuration.setLayoutDirection(locale)
 
         return context.createConfigurationContext(configuration)
     }
 
-    private fun updateResourcesLegacy(context: Context, language: String?): Context {
+    private fun updateResourcesLegacy(context: Context, language: String): Context {
         val locale = Locale(language)
         Locale.setDefault(locale)
 
@@ -70,9 +40,11 @@ object LocaleHelper {
 
         val configuration = resources.configuration
         configuration.locale = locale
-
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            configuration.setLayoutDirection(locale)
+        }
         resources.updateConfiguration(configuration, resources.displayMetrics)
-
         return context
     }
+
 }

@@ -1,4 +1,4 @@
-package co.winds.myapplication
+package co.winds.myapplication.language
 
 import android.annotation.SuppressLint
 import android.graphics.Color
@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import co.winds.myapplication.LanguageActivity.Companion.isCheck
-import co.winds.myapplication.LanguageActivity.Companion.langagePos
+import co.winds.myapplication.language.LanguageActivity.Companion.isCheck
+import co.winds.myapplication.language.LanguageActivity.Companion.langagePos
+import co.winds.myapplication.R
+import co.winds.myapplication.model.LanguageModel
 import kotlinx.android.synthetic.main.row_layout.view.*
 
 class LangAdapter(var list: ArrayList<LanguageModel>) : RecyclerView.Adapter<LangAdapter.ViewHolder>() {

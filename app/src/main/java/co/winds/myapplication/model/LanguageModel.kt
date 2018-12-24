@@ -1,4 +1,4 @@
-package co.winds.myapplication
+package co.winds.myapplication.model
 
 data class LanguageModel(
     var langNameEng:String,
